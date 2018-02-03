@@ -12,6 +12,7 @@ const {
   GraphQLEnumType,
   GraphQLInputObjectType
 } = require('graphql/type');
+const { PredicateList } = require('./predicateType');
 
 const { op, directive, DEFAULT_PRIMARY_KEY_NAME, DEFAULT_PRIMARY_KEY_TYPE, DEFAULT_LIMIT } = require('./consts');
 const getDefaultValue = require('./getDefaultValue');
@@ -151,7 +152,8 @@ const createEntityQuery = (context, typeName) => {
           }
         }),
         args: {
-          filter: { type: GraphQLString, defaultValue: '' },
+          // filter: { type: GraphQLString, defaultValue: '' },
+          filter: { type: PredicateList },
           sort: { type: GraphQLString, defaultValue: primaryKeyName },
           offset: { type: GraphQLInt, defaultValue: 0 },
           limit: { type: GraphQLInt, defaultValue: DEFAULT_LIMIT }

@@ -2,8 +2,7 @@ const { Op, QueryTypes } = require('sequelize');
 
 const createFilterFactory = (schema, typeName) => {
   const fieldNames = Object.keys(schema.fields);
-  return filterStr => {
-    const filter = filterStr ? JSON.parse(filterStr) : [];
+  return (filter = []) => {
     return {
       [Op.and]: filter.map(({ field, operator, value }) => {
         if (!fieldNames.includes(field)) {
